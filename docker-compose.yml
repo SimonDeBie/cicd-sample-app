@@ -1,0 +1,53 @@
+services:
+  webapp:
+    image: mongskeu/webapp
+    build: .
+    ports:
+      - "3000:3000"
+    command: ["yarn", "start"] 
+    volumes:
+      - ./database.mysql:/app/database.mysql
+    environment:
+      MYSQL_URL: "mysql://admin:admin@database:3306/mydb"
+      # SQLITE_DB_PATH: "/app/database.sqlite"
+    depends_on:
+      - database
+      - portainer
+
+  database:
+    image: mysql:latest  
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root 
+      MYSQL_DATABASE: mydb  
+      MYSQL_USER: admin  
+      MYSQL_PASSWORD: admin 
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  test:
+    image: mongskeu/webapp
+    environment:
+      API_URL: "http://webapp:3000"
+    depends_on:
+      - webapp
+      - database
+    command: ["yarn", "test"]
+    volumes:
+      - ./:/app
+
+  portainer:
+    image: portainer/portainer-ce:latest
+    restart: always
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+
+
+volumes:
+  mysql_data: {}
+  portainer_data: {}

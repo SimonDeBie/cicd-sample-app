@@ -1,0 +1,36 @@
+# Ignore node_modules
+node_modules/
+
+# Ignore Dockerfiles and Docker compose files
+Dockerfile
+docker-compose.yml
+docker-compose-*.yml
+
+# Logs
+logs/
+*.log
+
+# Ignore Git-related files
+.git/
+.gitignore
+
+# Ignore Yarn files
+.yarn/
+
+# Ignore environment variable files
+.env
+
+# Exclude local SQLite database
+/database/
+
+# Ignore coverage reports
+coverage/
+.nyc_output/
+
+# Ignore VSCode settings
+.vscode/
+
+# Cache and build directories
+.cache/
+dist/
+build/

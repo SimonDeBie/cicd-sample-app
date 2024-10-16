@@ -1,0 +1,9 @@
+version: '3'  # This line can be omitted as it's obsolete
+services:
+  webapp:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src/index.js
+      - ./database:/app/database

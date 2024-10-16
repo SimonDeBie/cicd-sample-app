@@ -1,0 +1,37 @@
+services:
+  webapp:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./database:/app/database
+    environment:
+      MYSQL_URL: "mysql://admin:admin@database:3306/mydb"
+    depends_on:
+      - database
+
+  database:
+    image: mysql:latest  
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root 
+      MYSQL_DATABASE: mydb  
+      MYSQL_USER: admin  
+      MYSQL_PASSWORD: admin 
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  test:
+    image: webapp
+    environment:
+      API_URL: "http://webapp:3000"
+    depends_on:
+      - webapp
+    command: ["yarn", "test"]
+    volumes:
+      - ./:/app
+
+volumes:
+  mysql_data: {}
