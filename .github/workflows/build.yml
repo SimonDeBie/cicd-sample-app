@@ -27,3 +27,12 @@ jobs:
       # Run linting
       - name: Run lint
         run: yarn lint
+
+      # Build Docker image
+      - name: Build Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .  # The root of the repository
+          file: ./Dockerfile  # Specify the Dockerfile location (root)
+          tags: <your-docker-hub-username>/webapp:latest  # Tagging the image
+          push: false  # Do not push the image yet
