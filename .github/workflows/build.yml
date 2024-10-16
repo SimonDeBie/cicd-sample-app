@@ -34,5 +34,5 @@ jobs:
         with:
           context: .  # The root of the repository
           file: ./Dockerfile  # Specify the Dockerfile location (root)
-          tags: <your-docker-hub-username>/webapp:latest  # Tagging the image
+          tags: mongskeu/webapp:latest  # Tagging the image
           push: false  # Do not push the image yet
