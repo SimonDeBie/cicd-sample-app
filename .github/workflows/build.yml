@@ -47,3 +47,4 @@ jobs:
       # Push image to docker hub
       - name: Push docker image
         run: docker push mongskeu:webapp:latest
+        
