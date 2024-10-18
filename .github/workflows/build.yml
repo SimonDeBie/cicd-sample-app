@@ -28,6 +28,12 @@ jobs:
       - name: Run lint
         run: yarn lint
 
+      # Start the application in the background
+      - name: Start the application
+        run: |
+          yarn start &  # Start your app in the background
+          sleep 10      # Wait for the app to be ready
+
       # Run tests
       - name: Run tests
         run: yarn test
@@ -51,5 +57,3 @@ jobs:
       # Push image to docker hub
       - name: Push docker image
         run: docker push mongskeu/webapp:latest
-
-#nothing
