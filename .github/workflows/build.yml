@@ -28,14 +28,14 @@ jobs:
       - name: Run lint
         run: yarn lint
 
-      # Build Docker image
-      - name: Build Docker image
-        uses: docker/build-push-action@v5
-        with:
-          context: .  # The root of the repository
-          file: ./Dockerfile  # Specify the Dockerfile location (root)
-          tags: mongskeu/webapp:latest  # Tagging the image
-          push: false  # Do not push the image yet
+      # # Build Docker image
+      # - name: Build Docker image
+      #   uses: docker/build-push-action@v5
+      #   with:
+      #     context: .  # The root of the repository
+      #     file: ./Dockerfile  # Specify the Dockerfile location (root)
+      #     tags: mongskeu/webapp:latest  # Tagging the image
+      #     push: false  # Do not push the image yet
 
       # Log in to docker hub
       - name: Log in to Docker Hub
@@ -44,7 +44,16 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      # Push image to docker hub
-      - name: Push docker image
-        run: docker push mongskeu/webapp:latest
-        
+      # # Push image to docker hub
+      # - name: Push docker image
+      #   run: docker push mongskeu/webapp:latest
+      
+      # Build and push image
+      # Build Docker image
+      - name: Build Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .  # The root of the repository
+          file: ./Dockerfile  # Specify the Dockerfile location (root)
+          tags: mongskeu/webapp:latest  # Tagging the image
+          push: true
