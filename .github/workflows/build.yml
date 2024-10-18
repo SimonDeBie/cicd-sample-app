@@ -28,6 +28,10 @@ jobs:
       - name: Run lint
         run: yarn lint
 
+      # Run tests
+      - name: Run tests
+        run: yarn test
+
       # Build Docker image
       - name: Build Docker image
         uses: docker/build-push-action@v5
