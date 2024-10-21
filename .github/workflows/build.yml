@@ -47,7 +47,7 @@ jobs:
 
       # Build Docker image
       - name: Build Docker image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .  # The root of the repository
           file: ./Dockerfile  # Specify the Dockerfile location (root)
