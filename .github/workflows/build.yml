@@ -52,6 +52,6 @@ jobs:
           context: .  # The root of the repository
           file: ./Dockerfile  # Specify the Dockerfile location (root)
           tags: mongskeu/webapp:latest  # Tagging the image
-          push: false  # Do not push the image yet
+          push: true  # Do not push the image yet
 
         #niks
