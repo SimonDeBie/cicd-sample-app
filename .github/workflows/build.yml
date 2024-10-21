@@ -31,8 +31,8 @@ jobs:
       # Start the application in the background
       - name: Start the application
         run: |
-          yarn start &  # Start your app in the background
-          sleep 10      # Wait for the app to be ready
+          yarn start &  
+          sleep 10
 
       # Run tests
       - name: Run tests
@@ -57,3 +57,5 @@ jobs:
       # Push image to docker hub
       - name: Push docker image
         run: docker push mongskeu/webapp:latest
+
+        #niks
